@@ -2,31 +2,14 @@ import numpy as np
 import ghat
 from scipy.optimize import linear_sum_assignment
 import kernel
-from sklearn.metrics.pairwise import rbf_kernel #remember
 import training as tr
 from gamma_r import gamma_NDCG
-from sklearn import preprocessing
 import time
-from scipy.spatial.distance import pdist, squareform
 
 train = np.load("Web10kModified" +'/' + '{}'.format(1)+'data_matrix_train.npy')
 train_r = np.load("Web10kModified" + '/' + '{}'.format(1) + 'data_matrix_train_r.npy')
 val = np.load("Web10kModified" + '/' + '{}'.format(1) + 'data_matrix_val.npy')
 val_r = np.load("Web10kModified" + '/' + '{}'.format(1) + 'data_matrix_val_r.npy')
-
-train = np.concatenate((train, val), axis = 0)
-shape_train = train.shape
-train_reshape = np.reshape(train, (shape_train[0],shape_train[1] * shape_train[2]))
-train_r = np.concatenate((train_r, val_r), axis = 0)
-l = 0.001
-c = 10
-K = kernel.lin_kernel(train_reshape, train_reshape,c)
-K_inv, gamma_train = tr.training_NDCG(train_r, K, l)
-
-test = np.load("Web10kModified" + '/' + '{}'.format(1) + 'data_matrix_test.npy')
-test_r = np.load("Web10kModified" + '/' +'{}'.format(1) + 'data_matrix_test_r.npy')
-
-k=10
 
 def test_NDCG_rbf(nr_queries, Kx, K_inv, gamma_train):
     prediction = ghat.g_hat(nr_queries,K_inv, Kx, gamma_train)
@@ -40,15 +23,6 @@ def test_ndcg(nr_queries, Kx, K_inv, gamma_train):
 train_sh = train.shape
 shape_train = train.shape
 
-#train = np.reshape(train, (shape_train[0]*shape_train[1], shape_train[2]))
-#scaler = preprocessing.StandardScaler().fit(train)
-#train = scaler.transform(train)
-#train = np.reshape(train, (shape_train[0],shape_train[1], shape_train[2]))
-
-#shape_val = val.shape
-#val = np.reshape(val, (shape_val[0]*shape_val[1], shape_val[2]))
-#val = scaler.transform(val)
-#val= np.reshape(val, (shape_val[0],shape_val[1], shape_val[2]))
 
 def test_proc(train, test, test_r, K_inv, gamma_train, c):
     nr_test_queries = test_r.shape[0]
@@ -71,8 +45,6 @@ def test_proc(train, test, test_r, K_inv, gamma_train, c):
         ndcg = ndcg * (j - 1) / j + r[row_ind, col_ind].sum() / j
         print(ndcg)
     return ndcg
-
-test_proc(train, test, test_r, K_inv, gamma_train, c)
 
 
 def validation(train, train_r, val, val_r):
@@ -100,4 +72,3 @@ def validation(train, train_r, val, val_r):
 
     print(l_opt, c_opt)
 
-#validation(train, train_r, val, val_r)

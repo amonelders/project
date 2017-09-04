@@ -3,7 +3,6 @@ import kernel
 import numpy as np
 import gamma_r
 from scipy import linalg
-from sklearn.metrics.pairwise import rbf_kernel #remember
 
 
 def training_NDCG_rbf(train_r,K,l,k=10):

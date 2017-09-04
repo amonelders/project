@@ -1,5 +1,7 @@
 import numpy as np
 
+"Taken from: https://gist.github.com/mblondel/7337391, credits to mblondel"
+
 def dcg_score(y_true, y_score, k, gains="exponential"):
     """Discounted cumulative gain (DCG) at rank k
     Parameters

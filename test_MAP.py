@@ -2,13 +2,10 @@ import numpy as np
 from training import training_MAP
 import kernel
 import ghat
-import scipy
 import time
-from scipy.spatial.distance import pdist, squareform
 from sklearn import preprocessing
 
 from gamma_r import gamma_MAP
-from sklearn.metrics.pairwise import rbf_kernel #remember
 np.random.seed(0)
 
 T = np.array([[1,1/2, 1/3,1/4,1/5,1/6,1/7,1/8,1/9],[0,1/2, 1/3,1/4,1/5,1/6,1/7,1/8,1/9],
@@ -106,19 +103,12 @@ train = scaler.transform(train)
 train = np.reshape(train, (shape_train[0],shape_train[1], shape_train[2]))
 train_reshape = np.reshape(train, (shape_train[0],shape_train[1]*shape_train[2]))
 
-#shape_val = val.shape #FOR TRAINING
-#val = np.reshape(val, (shape_val[0]*shape_val[1], shape_val[2]))
-#val = scaler.transform(val)
-#val= np.reshape(val, (shape_val[0],shape_val[1], shape_val[2]))
-
 shape_test = test.shape# FOR TESTING
 test = np.reshape(test, (shape_test[0]*shape_test[1], shape_test[2]))
 test = scaler.transform(test)
 test = np.reshape(test, (shape_test[0],shape_test[1], shape_test[2]))
 
-#pairwise_dists = squareform(pdist(train_reshape, 'euclidean'))
-#print(np.median(pairwise_dists)) #median of distances gamma =
-K = kernel.rbf_kernel(train_reshape, gamma = c) #need at least 7 (1e-8) zeros. kernel.
+K = kernel.rbf_kernel(train_reshape, gamma = c)
 K_inv, gamma_train = training_MAP(train, train_r, K, l)
 test_proc(train,test,test_r, K_inv, gamma_train, perm_matrices, c,T)
 
@@ -146,6 +136,5 @@ def validation(train, train_r, val, val_r,test,test_r, perm_matrices, T):
 
     print(l_opt, c_opt)
 
-#validation(train, train_r, val, val_r, test, test_r,perm_matrices,T)#optimal so far: 0.01, 0.00077/0.006, 0.0005
 
 

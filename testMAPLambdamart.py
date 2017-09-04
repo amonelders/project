@@ -9,20 +9,17 @@ val = np.load("Web30KModified/web30k_small_max_doc_val.npy")
 
 TX = train[:,2:138]
 Ty = train[:,0]
-Ty[Ty > 1] == 1 #seems negligible
 Tqids = train[:,1]
 scaler = preprocessing.StandardScaler().fit(TX)
 TX = scaler.transform(TX)
 
 VX = val[:,2:138]
 Vy = val[:,0]
-Vy[Vy > 1]==1 #seems negligible
 Vqids = val[:,1]
 VX = scaler.transform(VX)
 
 EX = test[:,2:138]
 Ey = test[:,0]
-Ey[Ey>1] == 1 #seems negligible
 Eqids = test[:,1]
 EX = scaler.transform(EX)
 

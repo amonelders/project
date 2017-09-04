@@ -1,10 +1,8 @@
 import numpy as np
 import os
 import re
-from itertools import islice
 print(os.getcwd())
 
-#dim = 46
 
 def find_max_nr_doc(data):
     """
@@ -125,34 +123,3 @@ def preprocessing(file_train, file_test, file_val, dim_feature,file,fold_nr):
     np.save(file + "/" + fold_nr + "data_matrix_test_r", data_matrix_test_r)
     np.save(file + "/" + fold_nr + "data_matrix_val", data_matrix_val)
     np.save(file + "/" + fold_nr + "data_matrix_val_r", data_matrix_val_r)
-"""
-file_test = "Web10kModified/1_data_TREC_test.npy"
-file_train = "Web10kModified/1_data_TREC_train.npy"
-file_val = "Web10kModified/1_data_TREC_val.npy"
-
-preprocessing(file_train, file_test, file_val, 136, "Web10kModified", '1')
-
-file_test = "Web10kModified/2_data_TREC_test.npy"
-file_train = "Web10kModified/2_data_TREC_train.npy"
-file_val = "Web10kModified/2_data_TREC_val.npy"
-
-preprocessing(file_train, file_test, file_val, 136, "Web10kModified", '2')
-
-file_test = "Web10kModified/3_data_TREC_test.npy"
-file_train = "Web10kModified/3_data_TREC_train.npy"
-file_val = "Web10kModified/3_data_TREC_val.npy"
-
-preprocessing(file_train, file_test, file_val, 136, "Web10kModified", '3')
-
-file_test = "Web10kModified/4_data_TREC_test.npy"
-file_train = "Web10kModified/4_data_TREC_train.npy"
-file_val = "Web10kModified/4_data_TREC_val.npy"
-
-preprocessing(file_train, file_test, file_val, 136, "Web10kModified", '4')
-
-file_test = "Web10kModified/5_data_TREC_test.npy"
-file_train = "Web10kModified/5_data_TREC_train.npy"
-file_val = "Web10kModified/5_data_TREC_val.npy"
-
-preprocessing(file_train, file_test, file_val, 136, "Web10kModified", '5')
-"""
