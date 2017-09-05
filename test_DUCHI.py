@@ -15,6 +15,6 @@ def loss_DUCHI(y,r):
     edges = gamma_DUCHI(r,10)
     print(edges)
     for edge, weight in np.ndenumerate(edges):
-        if y[edge[0]] - y[edge[1]] > 0: #note, because this is the ranking, 0 is the better ranking. Seems to work for small example!.
+        if y[edge[0]] - y[edge[1]] > 0:
             loss += weight
     return 1/nr_documents*loss

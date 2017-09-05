@@ -1,5 +1,5 @@
 import numpy as np
-from NDCG import dcg_score, ndcg_score
+from NDCG import dcg_score
 
 def gamma_NDCG(r, k):
     """

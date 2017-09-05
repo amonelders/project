@@ -3,7 +3,6 @@ import os
 import re
 print(os.getcwd())
 
-
 def find_max_nr_doc(data):
     """
     finds the maximum nr of documents returned over all queries

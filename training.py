@@ -4,7 +4,6 @@ import numpy as np
 import gamma_r
 from scipy import linalg
 
-
 def training_NDCG_rbf(train_r,K,l,k=10):
     """dont forget kernel
     :param train:

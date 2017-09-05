@@ -2,7 +2,6 @@ import pyltr
 import numpy as np
 from sklearn import preprocessing
 
-
 test = np.load("Web30KModified/web30k_small_max_doc_test.npy")
 train = np.load("Web30KModified/web30k_small_max_doc_train.npy")
 val = np.load("Web30KModified/web30k_small_max_doc_val.npy")

@@ -1,6 +1,7 @@
 import numpy as np
 from scipy import linalg
 
+
 def train_kernel_inv(train, K, l):
     """
     :param train: nr_data_tr x nr_documents x dim_feature_size (array)

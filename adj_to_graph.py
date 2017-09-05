@@ -1,5 +1,4 @@
 import igraph
-import numpy as np
 import pandas as pd
 
 def adj_to_graph(Adj):

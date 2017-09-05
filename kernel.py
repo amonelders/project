@@ -11,7 +11,6 @@ def lin_kernel(queries_1, queries_2,c):
 
 def kernel_DUCHI(queries_1, queries_2, a, p):
     """
-    need to check if correct .
     :param queries_1:
     :param queries_2:
     :return:
@@ -28,16 +27,12 @@ def kernel_DUCHI(queries_1, queries_2, a, p):
     return num/denom**(p/2)
 
 def sum_rbf_kernel(X, Y, gamma):
-    #Not shaped.
     K = 0
     X_shape = X.shape
     for i in range(X_shape[1]):
         K += rbf_kernel(X[:,i,:], Y[:,i,:])
     return 1/X_shape[1]*K
 
-#train = np.load("Web30KModified/small_max_zeros_data_train.npy")
-
-#print(sum_rbf_kernel(train, train, gamma = 0.0001))
 
 
 

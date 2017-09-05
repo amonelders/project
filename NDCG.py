@@ -18,8 +18,8 @@ def dcg_score(y_true, y_score, k, gains="exponential"):
     -------
     DCG @k : float
     """
-    order = np.argsort(-y_score)#get's the order from y_score, why the MIN
-    y_true = np.take(y_true, order[:k]) #y_true would be the relevance labels?
+    order = np.argsort(-y_score)
+    y_true = np.take(y_true, order[:k])
     if gains == "exponential":
         gains = 2 ** y_true - 1
     elif gains == "linear":

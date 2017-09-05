@@ -19,10 +19,8 @@ def test_ndcg(nr_queries, Kx, K_inv, gamma_train):
     prediction = ghat.g_hat(nr_queries,K_inv, Kx, gamma_train)
     return prediction
 
-#FOR VALIDATION.
 train_sh = train.shape
 shape_train = train.shape
-
 
 def test_proc(train, test, test_r, K_inv, gamma_train, c):
     nr_test_queries = test_r.shape[0]

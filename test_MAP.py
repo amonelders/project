@@ -26,7 +26,6 @@ print(test.shape)
 test_r = np.load("Web30KModified/small_max_zeros_rel_test.npy")
 
 perm_matrices = list(np.load('Web30KModified/perm_matrices_9.npy'))
-
 def objective_fun(W, T, P):
     return np.trace(np.transpose(P).dot(W).dot(P).dot(T))
 
@@ -42,7 +41,7 @@ def train_max(W,T,perm_matrices):
 
 def g_MAP(train, Kx, K_inv, gamma_train):
     """
-    Gives a prediction for a specic input x, and a training set, with linear kernel and bias C.
+    Gives a prediction for a specific input x, and a training set, with linear kernel and bias C.
     :param train_r:
     :param x:
     :param K_inv:
@@ -122,9 +121,9 @@ def validation(train, train_r, val, val_r,test,test_r, perm_matrices, T):
         start_time = time.time()
         for l in hyperparameters_l:
             train_reshape = np.reshape(train, (shape_1[0], shape_1[1] * shape_1[2]))
-            K = kernel.rbf_kernel(train_reshape, train_reshape,c) #KERNEL, perhaps reshape, check before validation
-            K_inv, gamma_train = training_MAP(train, train_r, K, l)  #train with l
-            AP = test_proc(train, val, val_r, K_inv, gamma_train, perm_matrices, c,T) #test on validation set for trained with l and c
+            K = kernel.rbf_kernel(train_reshape, train_reshape,c)
+            K_inv, gamma_train = training_MAP(train, train_r, K, l)
+            AP = test_proc(train, val, val_r, K_inv, gamma_train, perm_matrices, c,T)
 
             if AP > best_AP:
                 best_AP = AP
